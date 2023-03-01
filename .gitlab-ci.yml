@@ -1,10 +1,21 @@
+variables:
+    VERSION:
+        value: "$CI_COMMIT_BRANCH"
+        description: The built image tag (for example the docker git tag, 'latest' or 'stable').
+    PLATFORM: 
+        value: linux/amd64
+        options:
+            - linux/arm64
+            - linux/amd64
+        description: Type of platform on which the docker image will be deployed.
+
 include:
-  - project: 'docker/ci-template'
-    ref: master
-    file: 'deploy-docker.gitlab-ci.yml'
+    - project: 'docker/ci-template'
+      ref: 'master'
+      file: 'deploy-docker.gitlab-ci.yml'
 
 workflow:
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web" || $CI_COMMIT_BRANCH == "master"
-      when: always
-    - when: never
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "web" || $CI_COMMIT_BRANCH == "master"
+          when: always
+        - when: never
