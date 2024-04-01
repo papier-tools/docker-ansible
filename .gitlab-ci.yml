@@ -1,3 +1,3 @@
 
 include:
-  - component: /tools/cicd-components/docker/docker-build:1-yolooooooo
+  - component: $COMPONENTS/docker/docker-build@1-yolooooooo
